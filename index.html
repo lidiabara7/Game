@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+</head>
+<body>
+ <title>The Psychic Game</title>  
+ 
+
+
+<div>
+<p id= direction-text>Guess what letter I'm thinking of</p>
+<p id="wins-text"></p>
+<p id= "losses-text"></p>
+<p id="guessesleft-text"></p>
+<p id= "guessedsofar-text"></p>
+<p id= "userchoices-text"></p>
+<p id= "computerchoices-text"></p>
+</div>
+
+<script type="text/javascript">
+
+ 
+
+var computerChoices = ["a", "s", "d", "f", "g", "h", "j", "k", "l", "m","n","o","p","q","r","s","t","u","v","w","x","y","z",];
+var wins = 0;
+var losses = 0;
+var GuessesLeft = 10;
+var GuessedsoFar = 0;
+
+var directionsText = document.getElementById("direction-text");
+var winsText = document.getElementById("wins-text");
+var lossesText = document.getElementById("losses-text");
+var GuessesLeftText = document.getElementById("guessesleft-text");
+var GuessedsoFarText = document.getElementById("guessedsofar-text");
+var PlayerChoiceText = document.getElementById("userchoice-text");
+var computerChoiceText = document.getElementById("computerchoice-text");
+
+document.onkeyup = function (event) {
+  var PlayerGuess = event.key.toLowerCase();
+  var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+  
+
+  if (PlayerGuess === computerGuess) {
+    wins++;
+    GuessesLeft = 10;
+  
+  }
+  else {
+    GuessesLeft--;
+    GuessedsoFar++;  
+  }
+
+  if (GuessedsoFar === 10){
+    losses++
+    GuessedsoFar = 0
+     alert("I was thinking of the letter: " + computerGuess + ". " + "Pleasetry again");
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    GuessesLeft = 10;
+  }
+  
+directionsText.textContent = "";
+winsText.textContent = "wins: " + wins;
+lossesText.textContent = "losses: " + losses;
+GuessesLeftText.textContent = "Guesses Left: " + GuessesLeft;
+GuessedsoFarText.textContent = "Guesses so far: " + GuessedsoFar
+PlayerChoiceText.textContent = PlayerGuess;
+    
+};
+
+
+</script>
+</body>
+</html>
