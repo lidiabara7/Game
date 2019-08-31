@@ -1,78 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    
+    <title>Word Guess Game</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
-<body>
- <title>The Psychic Game</title>  
- 
 
+<body style="background: url(images/sea-1337565_1920.jpg); background-size: cover">
+    <div class="container">
+        <div class="jumbotron p-4 mt-3" style="opacity: 0.7">
+            <h1 class="display-6 text-center">Word Guess Game!</h1>
+            <p class="lead mx-auto text-center">Guess the hidden summer related word. To start playing highlight the blank spaces and start typing letters.</p>
+        </div>
 
-<div>
-<p id= direction-text>Guess what letter I'm thinking of</p>
-<p id="wins-text"></p>
-<p id= "losses-text"></p>
-<p id="guessesleft-text"></p>
-<p id= "guessedsofar-text"></p>
-<p id= "userchoices-text"></p>
-<p id= "computerchoices-text"></p>
-</div>
+        <div class="card" style="opacity: 0.7">
+            <div class="card-header">
+                Word to guess
+            </div>
+            <p id="wordToGuess" class="pl-3 pt-3"></p>
 
-<script>
+            <div class="card pl-3 pt-3" style="opacity: 0.7">
+                <p id=wrongGuesses>Wrong Guesses</p>
+            </div>
+            <div class="card pl-3 pt-3" style="opacity: 0.7">
+                <p id="numGuesses">Guesses Left </p>
+            </div>
+            <div class="card pl-3 pt-3" style="opacity: 0.7">
+                <p id="winCount"> Win Count </p>
+            </div>
+            <div class="card pl-3 pt-3" style="opacity: 0.7">
+                <p id="lossCount"> Loss count </p>
+            </div>
 
- 
-
-var computerChoices = ["a", "s", "d", "f", "g", "h", "j", "k", "l", "m","n","o","p","q","r","s","t","u","v","w","x","y","z",];
-var wins = 0;
-var losses = 0;
-var GuessesLeft = 10;
-var GuessedsoFar = 0;
-
-var directionsText = document.getElementById("direction-text");
-var winsText = document.getElementById("wins-text");
-var lossesText = document.getElementById("losses-text");
-var GuessesLeftText = document.getElementById("guessesleft-text");
-var GuessedsoFarText = document.getElementById("guessedsofar-text");
-var PlayerChoiceText = document.getElementById("userchoice-text");
-var computerChoiceText = document.getElementById("computerchoice-text");
-
-document.onkeyup = function (event) {
-  var PlayerGuess = event.key.toLowerCase();
-  var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-  
-
-  if (PlayerGuess === computerGuess) {
-    wins++;
-    GuessesLeft = 10;
-  
-  }
-  else {
-    GuessesLeft--;
-    GuessedsoFar++;  
-  }
-
-  if (GuessedsoFar === 10){
-    losses++
-    GuessedsoFar = 0
-     alert("I was thinking of the letter: " + computerGuess + ". " + "Pleasetry again");
-    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-    GuessesLeft = 10;
-  }
-  
-directionsText.textContent = "";
-winsText.textContent = "wins: " + wins;
-lossesText.textContent = "losses: " + losses;
-GuessesLeftText.textContent = "Guesses Left: " + GuessesLeft;
-GuessedsoFarText.textContent = "Guesses so far: " + GuessedsoFar
-PlayerChoiceText.textContent = PlayerGuess;
-    
-};
-
-
-</script>
+        </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script src="logic.js"></script>
+
 </html>
